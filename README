@@ -1,0 +1,11 @@
+<b>Sillarai</b>
+
+<a href="http://sillarai.com">Sillarai</a> is a money management web application. This is the mobile client for the sillarai project. 
+Currently the application support following things
+* Add expense
+* Listing all expenses
+* Export all the expenses to a excel sheet
+
+TODO
+* Editing expenses (not mandatory but still needed)
+* Syncing data to the sillarai.com with user authentication
