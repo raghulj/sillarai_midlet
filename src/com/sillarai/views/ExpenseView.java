@@ -38,8 +38,7 @@ public class ExpenseView extends Form implements CommandListener{
     public ExpenseView(Controller controller) {
         super("Sillarai");
         this.controller = controller;
-
-
+        
         descriptionField = new TextField("Details", "", 32, TextField.ANY);
         append(descriptionField);
 
@@ -63,6 +62,22 @@ public class ExpenseView extends Form implements CommandListener{
         this.setCommandListener(this);
     }
 
+    public void setExpenseDetail(){
+        String desc ="";
+        Logger.info(controller.description);
+        if(!controller.description.equals("")){
+            desc = controller.description;
+        }
+        Logger.info("AMT "+controller.amount);
+        String amt ="";
+        if(!controller.amount.equals("")){
+            amt = controller.amount;
+        }
+        descriptionField.setString(desc);
+        amountField.setString(amt);
+
+
+    }
      public void commandAction(Command command, Displayable disp) {
 
          if(command == saveCommand){
@@ -71,10 +86,18 @@ public class ExpenseView extends Form implements CommandListener{
              if( descp.equals("") || amount.equals("")){
                  controller.showAlert("Error", "Enter all the data.", AlertType.ERROR);
              }else{
+
+                if(controller.description.equals("")){
                 controller.saveExpense(descp, Float.parseFloat(amount));
                 clearFields();
                 controller.showAlert("Success", "Expense saved !", AlertType.INFO);
                 Logger.info(String.valueOf(Expense.getExpenseIndex()));
+                }else{
+
+                 controller.getSettings().updateExpense(controller.expenseId, descp, amount, controller.time);
+                clearFields();
+                controller.showAlert("Success", "Updated Expense !", AlertType.INFO);
+                }
              }
 
          }

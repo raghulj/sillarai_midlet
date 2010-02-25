@@ -42,6 +42,11 @@ public class Controller {
 
     private boolean FileWrite;
 
+    public String description ="";
+    public String amount ="";
+    public String expenseId ="";
+    public String time = "";
+
     public Controller(MIDlet mid, Display disp){
         midlet = mid;
         display = disp;
@@ -79,6 +84,7 @@ public class Controller {
         if(listExpenses == null){
             listExpenses = new ListExpenses(this);
         }
+        listExpenses.showList();
         display.setCurrent(listExpenses);
     }
 
@@ -92,6 +98,9 @@ public class Controller {
     }
 
 
+    public void setExpenseDetail(){
+        expenseView.setExpenseDetail();
+    }
     public void showAlert(String title,String mess,AlertType al){
         alertBox = new Alert(title,mess,null,al);
         alertBox.setTimeout(Alert.FOREVER);

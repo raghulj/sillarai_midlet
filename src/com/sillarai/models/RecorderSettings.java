@@ -85,11 +85,23 @@ public class RecorderSettings {
      }
 
      public void setExpense(int expIndex, Expense exp){
-         String expense = exp.getDescription() +"~~"+exp.getAmount()+"~~"+exp.getExp_time();
+         String expense = "";
+         if(exp != null){
+          expense = expIndex +"~~"+exp.getDescription() +"~~"+exp.getAmount()+"~~"+exp.getExp_time();
+         }else{
+            expense = "";
+         }
          settings.setStringProperty(String.valueOf(expIndex), expense);
          saveSettings();
      }
 
+     public void updateExpense(String expIndex,String desc,String amt,String time){
+        String expense;
+        expense = expIndex +"~~"+desc +"~~"+amt+"~~"+time;
+        settings.setStringProperty(expIndex, expense);
+        saveSettings();
+
+     }
      public String getExpense(int expIndex,String nu){
 
          String exp = settings.getStringProperty(String.valueOf(expIndex), null);
