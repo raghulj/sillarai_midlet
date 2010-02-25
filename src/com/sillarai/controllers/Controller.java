@@ -158,9 +158,9 @@ public class Controller {
         for(Enumeration en = allExpenses.elements();en.hasMoreElements();){
             String data = (String)en.nextElement();
             String arr[] = StringUtil.split(data, "~~");
-            String description = arr[0];
-            String amount = arr[1];
-            String time = arr[2];
+            String description = arr[1];
+            String amount = arr[2];
+            String time = arr[3];
             xlData += description+"\t"+amount+"\t"+time+"\n";
         }
        if(WritedataFile(xlData)){
